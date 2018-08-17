@@ -1,21 +1,16 @@
-package com.ms.entity;
+package com.ms.controller.viewmodel;
 
 import java.util.Date;
 
-public class User {
-	private Integer userId;
+public class UserViewModel {
+
 	private String userName;
     private int userAge;
     private String userAddress;
     private String userPassword;
     private Date userBirthday;
 	
-	public Integer getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -49,7 +44,6 @@ public class User {
 		this.userBirthday = userBirthday;
 	}
 	public String toString(){
-		return "User [id=" + userId + ", name=" + userName ;
+		return "User" ;
 	}
-
 }
