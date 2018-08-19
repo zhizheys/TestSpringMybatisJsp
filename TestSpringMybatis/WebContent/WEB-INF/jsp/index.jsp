@@ -7,14 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>the jsp index page</h1>
-<h1>首页</h1>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-
-<p><a href="<%=basePath%>user/show">to show all user</a></p>
+	<h1>the jsp index page</h1>
+	<h1>首页</h1>
+	<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	%>
+	
+	
+	<p><a href="<%=basePath%>user/show">to show one user</a></p>
+	<p><a href="<%=basePath%>user/showalluser">all user</a></p>
+	<p><a href="<%=basePath%>user/registeruser">add user</a></p>
+	<p><a href="<%=basePath%>user/dealuser">deal user</a></p>
+	
 </body>
 </html>

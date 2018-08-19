@@ -2,9 +2,12 @@ package com.ms.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.jasper.tagplugins.jstl.core.Redirect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -115,9 +118,8 @@ public class UserController {
 	}
 
    @RequestMapping(value="/adduser",method=RequestMethod.POST)
-   @ResponseBody
     public String addUser(@ModelAttribute UserViewModel user) {
-	   String result="hello world";
+       ModelAndView modelAndView = new ModelAndView();
 	   Date date = new Date();
 	   
 	   User addUser = new User();
@@ -129,11 +131,35 @@ public class UserController {
 	   
 	  int userId=userService.addUser(addUser);
       User userFind = userService.getUserById(userId);
+	  System.out.println("==============================add user id is :" + userFind.getUserId()); 
+      
+	  return "redirect:/user/showalluser";
+
+	}
+    
+   @RequestMapping(value="/addusertwo",method=RequestMethod.POST)
+   @ResponseBody
+   public String addUserTwo(@ModelAttribute UserViewModel user) {
+       ModelAndView modelAndView = new ModelAndView();
+	   Date date = new Date();
 	   
-	   ApiResult apiResult = new ApiResult();
+	   User addUser = new User();
+	   addUser.setUserName(user.getUserName());
+	   addUser.setUserAge(user.getUserAge());
+	   addUser.setUserAddress(user.getUserAddress());
+	   addUser.setUserPassword(user.getUserPassword());
+	   addUser.setUserBirthday(user.getUserBirthday());
+	   
+	  int userId=userService.addUser(addUser);
+	  
+	  String result="";
+	  HashMap hm = new HashMap();
+	  hm.put("userId", userId);
+	  
+	  ApiResult apiResult = new ApiResult();
 	   apiResult.setResultCode(200);
 	   apiResult.setMessage("success");
-	   apiResult.setData(userFind);
+	   apiResult.setData(hm);
 	   
 	  ObjectMapper objectMapper =new ObjectMapper();
 	  
@@ -142,10 +168,9 @@ public class UserController {
 	  }catch(Exception ex){
 		  result = ex.getMessage();
 	  }
-
-	   return result;
+	  
+	  return result;
 	}
-    
    
    @RequestMapping(value="/registeruser",method=RequestMethod.GET)
     public ModelAndView registerUser() {
@@ -155,4 +180,23 @@ public class UserController {
 	   return modelAndView;
 	}
 
+   @RequestMapping(value="/showalluser",method=RequestMethod.GET)
+	public ModelAndView showAllUser() {
+
+	   ModelAndView result= new ModelAndView();
+	   User user = new User();
+	   List<User> userList = userService.getAllUser();
+	   
+	  result.addObject("userList", userList);
+      result.setViewName("user/alluser");
+	   return result;
+	}
+   
+   @RequestMapping(value="/dealuser",method=RequestMethod.GET)
+	public ModelAndView dealUser() {
+	   ModelAndView result= new ModelAndView();
+       result.setViewName("user/userinfo");
+	   return result;
+	}
+   
 }

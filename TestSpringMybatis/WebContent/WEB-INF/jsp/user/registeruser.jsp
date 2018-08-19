@@ -24,5 +24,9 @@
 		</form>
 	</div>
 	
+
+
+<p><a href="<%=basePath%>book/index">index</a></p>
+
 </body>
 </html>

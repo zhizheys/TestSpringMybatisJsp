@@ -1,5 +1,8 @@
 package com.ms.service;
 
+import java.util.List;
+
+import org.aspectj.weaver.ast.Literal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +29,13 @@ public class UserServiceImp implements UserService {
 		//返回该对象的自增ID
 		return user.getUserId();
 	}
+	
+	@Override
+	public List<User> getAllUser() {
+		return userDao.getAllUser();
+	}
+	
+	
+	
 
 }

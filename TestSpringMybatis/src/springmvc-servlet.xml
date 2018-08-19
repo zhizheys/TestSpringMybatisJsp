@@ -20,6 +20,7 @@
 	<!-- <bean -->
 	<!-- class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" 
 		/> -->
+
  
 	<!-- 视图 beans -->
 	<bean id="jspViewResolver"
