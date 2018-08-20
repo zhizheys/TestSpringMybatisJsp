@@ -70,9 +70,8 @@ public class UserController {
    //传统的url传递参数 http://localhost:8080/TestSpringMybatis/user/userinfo?id=10
    @RequestMapping(value="/userinfo",method=RequestMethod.GET)
    @ResponseBody
-	public String getUserById(@RequestParam("id") int id) {
+	public ApiResult getUserById(@RequestParam("id") int id) {
 	   int userId=id;
-	   String result=null;
 	   User user = new User();
        user = userService.getUserById(userId);
 	   
@@ -81,16 +80,23 @@ public class UserController {
 	   apiResult.setMessage("success");
 	   apiResult.setData(user);
 	   
-	  ObjectMapper objectMapper =new ObjectMapper();
-	  
-	  try{
-		  result = objectMapper.writeValueAsString(apiResult);
-	  }catch(Exception ex){
-		  result = ex.getMessage();
-	  }
-
-	   return result;
+	   return apiResult;
 	}
+   
+   @RequestMapping(value="/userinfotwo",method=RequestMethod.GET)
+   @ResponseBody
+	public ApiResult getUserById() {
+	   int userId=10;
+	   User user = new User();
+       user = userService.getUserById(userId);
+	   
+	   ApiResult apiResult = new ApiResult();
+	   apiResult.setResultCode(200);
+	   apiResult.setMessage("success");
+	   apiResult.setData(user);
+	   
+	   return apiResult;
+  }
    
    //restful url 风格http://localhost:8080/TestSpringMybatis/user/userinfo2/10
    @RequestMapping(value="/userinfo2/{id}",method=RequestMethod.GET)
@@ -139,7 +145,7 @@ public class UserController {
     
    @RequestMapping(value="/addusertwo",method=RequestMethod.POST)
    @ResponseBody
-   public String addUserTwo(@ModelAttribute UserViewModel user) {
+   public ApiResult addUserTwo(@ModelAttribute UserViewModel user) {
        ModelAndView modelAndView = new ModelAndView();
 	   Date date = new Date();
 	   
@@ -161,15 +167,7 @@ public class UserController {
 	   apiResult.setMessage("success");
 	   apiResult.setData(hm);
 	   
-	  ObjectMapper objectMapper =new ObjectMapper();
-	  
-	  try{
-		  result = objectMapper.writeValueAsString(apiResult);
-	  }catch(Exception ex){
-		  result = ex.getMessage();
-	  }
-	  
-	  return result;
+	  return apiResult;
 	}
    
    @RequestMapping(value="/registeruser",method=RequestMethod.GET)

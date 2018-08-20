@@ -10,6 +10,10 @@
 	<title>Insert title here</title>
 </head>
 <body>
+       <%String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
     <input type="text" id="urlBase" name="urlBase" value="${ctx}"/>
     
     <div>
@@ -33,6 +37,8 @@
     	<p>userId: <input type="text" id="userId" name="userName" />
     	<p><input type="button" id="btnSubmit" name="btnSubmit" value="get user by Id" />
     </div>
+    
+    <p><a href="<%=basePath%>book/index">index</a></p>
     
     <script src="${ctx}/static/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 	<script src="${ctx}/static/js/app/user.js" type="text/javascript"></script>

@@ -11,7 +11,7 @@ $(function(){
 			datatype:"json",
 			data:{"id":userId},
 			success:function(data){
-				$("#userInfoDiv").text(data);
+				$("#userInfoDiv").text(JSON.stringify(data));
 			},
 			error:function(){
 				alert("get user Id error");
@@ -36,7 +36,7 @@ $(function(){
 			datatype:"json",
 			data:{"userName":userName,"userAge":userAge,"userAddress":userAddress,"userPassword":userPassword,"userBirthday":userBirthday},
 			success:function(data){
-				$("#userIdDiv").text(data);
+				$("#userIdDiv").text(JSON.stringify(data));
 			},
 			error:function(){
 				alert("get user Id error");
