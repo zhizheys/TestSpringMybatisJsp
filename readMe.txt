@@ -8,4 +8,8 @@
 
 4.jquery ajax
 
-5.
+5. 添加了全局异常处理， 全局拦截
+
+6.session, cookie
+
+
