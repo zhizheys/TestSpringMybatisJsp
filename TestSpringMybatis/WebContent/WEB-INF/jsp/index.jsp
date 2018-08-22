@@ -19,6 +19,8 @@
 	<p><a href="<%=basePath%>user/showalluser">all user</a></p>
 	<p><a href="<%=basePath%>user/registeruser">add user</a></p>
 	<p><a href="<%=basePath%>user/dealuser">deal user</a></p>
+	<p><a href="<%=basePath%>book/test">test error</a></p>
 	
+	<p><a href="<%=basePath%>login/logout"><h1>logout</h1></a></p>
 </body>
 </html>

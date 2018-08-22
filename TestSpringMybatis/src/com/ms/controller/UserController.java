@@ -1,11 +1,17 @@
 package com.ms.controller;
 
+import java.awt.event.ItemEvent;
+import java.awt.im.spi.InputMethod;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -45,6 +53,8 @@ public class UserController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+		
+		
 	}
 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
@@ -132,10 +142,18 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
-	public String addUser(@ModelAttribute UserViewModel user) {
+	public ModelAndView addUser(@ModelAttribute UserViewModel user) {
 		ModelAndView modelAndView = new ModelAndView();
-		Date date = new Date();
+		
+//		if(result.hasErrors()){
+//			logger.error("===========================add user valid error");
+//			modelAndView.addObject("user", user);
+//			modelAndView.setViewName("user/registeruser");
+//			return modelAndView;
+//		}
+		
 
+		Date date = new Date();
 		User addUser = new User();
 		addUser.setUserName(user.getUserName());
 		addUser.setUserAge(user.getUserAge());
@@ -147,8 +165,10 @@ public class UserController {
 		User userFind = userService.getUserById(userId);
 		System.out.println("==============================add user id is :" + userFind.getUserId());
 
-		return "redirect:/user/showalluser";
-
+		//return "redirect:/user/showalluser";
+		 modelAndView = new ModelAndView("redirect:/user/showalluser");
+		 
+		 return modelAndView;
 	}
 
 	@RequestMapping(value = "/addusertwo", method = RequestMethod.POST)
@@ -187,13 +207,22 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/showalluser", method = RequestMethod.GET)
-	public ModelAndView showAllUser() {
+	public ModelAndView showAllUser(HttpServletRequest request,HttpServletResponse response) {
 
 		ModelAndView result = new ModelAndView();
 		User user = new User();
 		List<User> userList = userService.getAllUser();
-
 		result.addObject("userList", userList);
+		
+		Cookie[] cookies = request.getCookies();
+		if(cookies !=null && cookies.length >0){
+			for(Cookie item :cookies){
+				if("userinfo".equals(item.getName())){
+					result.addObject("userInfo", item.getValue());
+				}
+			}
+		}
+		
 		result.setViewName("user/alluser");
 		return result;
 	}

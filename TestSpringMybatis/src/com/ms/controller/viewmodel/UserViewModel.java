@@ -2,9 +2,16 @@ package com.ms.controller.viewmodel;
 
 import java.util.Date;
 
-public class UserViewModel {
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 
+
+public class UserViewModel {
+    
+	@NotNull(message = "username 不能为空")
 	private String userName;
+	
+	@Max(value=120,message="年龄最大不能查过120")
     private int userAge;
     private String userAddress;
     private String userPassword;

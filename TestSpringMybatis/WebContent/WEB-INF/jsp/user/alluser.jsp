@@ -9,6 +9,7 @@
 </head>
 <body>
 	<h1>all user</h1>
+    <h2>the user cookie value is: <span style="color:#FF0080;">${userInfo}</span> </h2>
     
     <table>
     	<thead>
