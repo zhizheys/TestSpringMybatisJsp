@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -142,15 +143,17 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
-	public ModelAndView addUser(@ModelAttribute UserViewModel user) {
+	public ModelAndView addUser(@Valid @ModelAttribute UserViewModel user,BindingResult result) {
 		ModelAndView modelAndView = new ModelAndView();
+		List<ObjectError> allErrors=null;
 		
-//		if(result.hasErrors()){
-//			logger.error("===========================add user valid error");
-//			modelAndView.addObject("user", user);
-//			modelAndView.setViewName("user/registeruser");
-//			return modelAndView;
-//		}
+		if(result.hasErrors()){
+			logger.error("===========================add user valid error");
+			allErrors = result.getAllErrors();
+			modelAndView.addObject("allErrors", allErrors);
+			modelAndView.setViewName("user/registeruser");
+			return modelAndView;
+		}
 		
 
 		Date date = new Date();

@@ -11,10 +11,9 @@
        http://www.springframework.org/schema/mvc 
        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
    
-    <!-- 拦截 -->
-   <!--  <mvc:annotation-driven></mvc:annotation-driven>
-    -->
-   
+    <!-- 拦截,表单验证 -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+    
  
 	<context:annotation-config />
 	<!-- 把标记了注解的类转换为bean ,这里并不是只扫描controller,要不然concroller注入报错 -->

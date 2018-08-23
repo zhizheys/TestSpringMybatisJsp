@@ -3,15 +3,20 @@ package com.ms.controller.viewmodel;
 import java.util.Date;
 
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Range;
+
 
 
 public class UserViewModel {
     
-	@NotNull(message = "username 不能为空")
+	@NotBlank(message = "username 不能为空")
 	private String userName;
 	
-	@Max(value=120,message="年龄最大不能查过120")
+	@Range(min = 18, max = 60, message = "年龄必须大于{min},小于{max}")
     private int userAge;
     private String userAddress;
     private String userPassword;
