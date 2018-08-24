@@ -1,3 +1,10 @@
+本地开发网址：http://localhost:8080/TestSpringMybatis/
+测试服务部署网址： 
+
+
+
+网站开发相关技术：
+
 0.spring mvc, jsp view页面
 
 1.mybatis 作为ORM工具
@@ -14,6 +21,22 @@
 
 7. 搭建表单提交验证最麻烦，一直出错 ！！！ 原因是有不少jar没有引用
 
-8.
+8.ehcache 配置，建议使用低版本
+
+<dependency>
+    <artifactId>ehcache-core</artifactId>
+    <version>2.6.11</version>
+</dependency>
+
+
+<dependency>
+    <artifactId>spring-context-support</artifactId>
+    <version>4.2.3.RELEASE</version>
+</dependency>
+
+<dependency>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.7.25</version>
+</dependency>
 
   

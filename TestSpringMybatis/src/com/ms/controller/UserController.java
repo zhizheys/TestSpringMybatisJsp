@@ -212,6 +212,8 @@ public class UserController {
 	@RequestMapping(value = "/showalluser", method = RequestMethod.GET)
 	public ModelAndView showAllUser(HttpServletRequest request,HttpServletResponse response) {
 
+		System.out.println("============user all ");
+		
 		ModelAndView result = new ModelAndView();
 		User user = new User();
 		List<User> userList = userService.getAllUser();

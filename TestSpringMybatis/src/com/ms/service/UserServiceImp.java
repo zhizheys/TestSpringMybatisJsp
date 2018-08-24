@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.aspectj.weaver.ast.Literal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.ms.mapper.UserMapper;
@@ -31,7 +32,9 @@ public class UserServiceImp implements UserService {
 	}
 	
 	@Override
+	@Cacheable(value = "myCache")
 	public List<User> getAllUser() {
+		System.out.println("============get from data base");
 		return userDao.getAllUser();
 	}
 	
