@@ -2,6 +2,7 @@ package com.ms.controller;
 
 import java.awt.event.ItemEvent;
 import java.awt.im.spi.InputMethod;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -143,7 +145,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
-	public ModelAndView addUser(@Valid @ModelAttribute UserViewModel user,BindingResult result) {
+	public ModelAndView addUser(HttpServletRequest request,@Valid @ModelAttribute UserViewModel user,BindingResult result,MultipartFile uploadFile) {
 		ModelAndView modelAndView = new ModelAndView();
 		List<ObjectError> allErrors=null;
 		
@@ -168,6 +170,29 @@ public class UserController {
 		User userFind = userService.getUserById(userId);
 		System.out.println("==============================add user id is :" + userFind.getUserId());
 
+		//upload file
+		if(uploadFile.getSize()>0){
+			String fileName = uploadFile.getOriginalFilename();
+			
+			if(fileName.endsWith("jpg") || fileName.endsWith("png")){
+				String leftPath = request.getServletContext().getRealPath("/static/images");
+				File  filePath = new File(leftPath,fileName);
+				
+				if(!filePath.getParentFile().exists()){
+					filePath.getParentFile().mkdirs();
+				}
+				
+				try{
+					uploadFile.transferTo(filePath);
+				}catch(Exception ex){
+					logger.error("upload file error, " + ex.getMessage());
+				}
+				
+			}
+		
+		}
+		
+		
 		//return "redirect:/user/showalluser";
 		 modelAndView = new ModelAndView("redirect:/user/showalluser");
 		 
