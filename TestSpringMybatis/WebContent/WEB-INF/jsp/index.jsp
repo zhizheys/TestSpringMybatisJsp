@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,5 +25,7 @@
 	<p><a href="<%=basePath%>book/test">test error</a></p>
 	
 	<p><a href="<%=basePath%>login/logout"><h1>logout</h1></a></p>
+	<p><img src="${ctx}/static/images/null.png" alt="a pic" /></p>
+	<p><img src="${ctx}/static/images/skin/0.jpg" alt="b pic" /></p>
 </body>
 </html>
