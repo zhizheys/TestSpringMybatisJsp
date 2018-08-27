@@ -22,8 +22,8 @@
 		   <p>UserPassword: <input type="text" id="userPassword" name="userPassword"></p>
 		   <p>UserBirthday: <input type="text" id="userBirthday" name="userBirthday"></p>
 		   
-		   <p>UserPicture: <input type="file" id="userPicture" name="userPicture" /></p>
-		   <p><input type="submit" vaule="提交"></p>
+		   <p>UserPicture: <input type="file" name="images[0]" /></p>
+		   <p><input type="submit" value="提交"></p>
 		</form>
 		
 		<div>

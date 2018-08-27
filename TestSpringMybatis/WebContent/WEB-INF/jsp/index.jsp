@@ -24,6 +24,10 @@
 	<p><a href="<%=basePath%>user/dealuser">deal user</a></p>
 	<p><a href="<%=basePath%>book/test">test error</a></p>
 	
+		<p><a href="<%=basePath%>product/product_input">upload multiple files</a></p>
+	<p><a href="<%=basePath%>book/addbook">upload one file</a></p>
+	
+	
 	<p><a href="<%=basePath%>login/logout"><h1>logout</h1></a></p>
 	<p><img src="${ctx}/static/images/null.png" alt="a pic" /></p>
 	<p><img src="${ctx}/static/images/skin/0.jpg" alt="b pic" /></p>
