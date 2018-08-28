@@ -1,6 +1,10 @@
 package com.ms.service;
 
+import java.util.List;
+
+import org.aspectj.weaver.ast.Literal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.ms.mapper.UserMapper;
@@ -26,5 +30,15 @@ public class UserServiceImp implements UserService {
 		//返回该对象的自增ID
 		return user.getUserId();
 	}
+	
+	@Override
+	@Cacheable(value = "myCache")
+	public List<User> getAllUser() {
+		System.out.println("============get from data base");
+		return userDao.getAllUser();
+	}
+	
+	
+	
 
 }

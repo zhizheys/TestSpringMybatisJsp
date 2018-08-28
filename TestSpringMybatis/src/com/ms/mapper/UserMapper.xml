@@ -12,4 +12,8 @@
           VALUES(#{userName},#{userAge},#{userAddress},#{userPassword},#{userBirthday});
     </insert>
     
+    <select id="getAllUser"  resultType="com.ms.entity.User">
+        select * from [dbo].[User]
+    </select>
+    
 </mapper>

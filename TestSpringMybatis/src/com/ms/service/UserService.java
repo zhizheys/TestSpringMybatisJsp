@@ -1,5 +1,7 @@
 package com.ms.service;
 
+import java.util.List;
+
 import com.ms.entity.User;
 
 //public class UserService {
@@ -20,8 +22,9 @@ import com.ms.entity.User;
 
 public interface UserService {
 
-	User getUserById(Integer id);
-	int addUser(User user);
+	public User getUserById(Integer id);
+	public int addUser(User user);
+	public List<User> getAllUser();
 
 }
 

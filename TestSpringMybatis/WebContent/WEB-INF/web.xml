@@ -11,6 +11,12 @@
 	  <param-name>contextConfigLocation</param-name>
 	  <param-value>classpath*:applicationContext.xml</param-value>
 	</context-param>
+	
+	<!-- log4j 日志配置， 当前网站的日志是通过common-logging 与log4j相结合 -->
+	<context-param>
+	    <param-name>log4jConfigLocation</param-name>
+	    <param-value>classpath*:log4j.properties</param-value>
+	</context-param>
   
 	<!-- Spring监听器 -->
 	<listener>
@@ -43,11 +49,30 @@
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/book/index</url-pattern>
 	</servlet-mapping>
- 
- 
+
+   <!-- 定义静态文件访问方式 -->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name> 
+        <url-pattern>*.png</url-pattern>    
+    </servlet-mapping> 
+     <servlet-mapping>
+        <servlet-name>default</servlet-name> 
+        <url-pattern>*.jpg</url-pattern>    
+    </servlet-mapping>     
+    <servlet-mapping>      
+        <servlet-name>default</servlet-name>   
+        <url-pattern>*.js</url-pattern>   
+    </servlet-mapping>   
+    <servlet-mapping>       
+        <servlet-name>default</servlet-name>      
+        <url-pattern>*.css</url-pattern>     
+    </servlet-mapping>
+   
+
  
 	<welcome-file-list>
 		<welcome-file>book/index</welcome-file>
 	</welcome-file-list>
+	
  
 </web-app>

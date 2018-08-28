@@ -1,18 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<h1>the jsp index page</h1>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-<p><a href="<%=basePath%>user/show">to show all user</a></p>
+	<h1>the jsp index page</h1>
+	<h1>首页</h1>
+	<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	%>
+	
+	
+	<p><a href="<%=basePath%>user/show">to show one user</a></p>
+	<p><a href="<%=basePath%>user/showalluser">all user</a></p>
+	<p><a href="<%=basePath%>user/registeruser">add user</a></p>
+	<p><a href="<%=basePath%>user/dealuser">deal user</a></p>
+	<p><a href="<%=basePath%>book/test">test error</a></p>
+	
+		<p><a href="<%=basePath%>product/product_input">upload multiple files</a></p>
+	<p><a href="<%=basePath%>book/addbook">upload one file</a></p>
+	
+	
+	<p><a href="<%=basePath%>login/logout"><h1>logout</h1></a></p>
+	<p><img src="${ctx}/static/images/null.png" alt="a pic" /></p>
+	<p><img src="${ctx}/static/images/skin/0.jpg" alt="b pic" /></p>
 </body>
 </html>
