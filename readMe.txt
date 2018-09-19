@@ -20,6 +20,12 @@
 6.session, cookie
 
 7. 搭建表单提交验证最麻烦，一直出错 ！！！ 原因是有不少jar没有引用
+  hibernate-validation
+  jboss-logging
+  valiation-api
+
+
+
 
 8.ehcache 配置，建议使用低版本
 
